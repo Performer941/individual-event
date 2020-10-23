@@ -319,9 +319,9 @@
                     {% else %}
                     <div class="author_card">
                         {% if not user.avatar_url %}
-                        <a href="#" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
+                        <a href="/personage" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
                         {% else %}
-                         <a href="#" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                         <a href="/personage" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
                         {% endif %}
                         <div class="author_resume">{{ user.nick_name }}</div>
                         {% if not user.signature %}

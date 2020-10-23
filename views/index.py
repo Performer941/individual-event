@@ -36,4 +36,11 @@ def user_list():
     return render_template("user_list.html", user=user, nick_name=nick_name)
 
 
+@index_blu.route("/personage")
+def personage():
+    user_id = session.get("user_id")
+    nick_name = session.get("nick_name", "")
+    user = db.session.query(User).filter(User.id == user_id).first()
+    return render_template("personage.html", user=user, nick_name=nick_name)
+
 
