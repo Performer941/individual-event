@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <!--引入jquery.min.js组件脚本-->
     <script src="/static/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <!--登录表单点击事件-->
+    <script type="text/javascript" src="/static/js/main.js"></script>
     <style type="text/css">
         body {
             background-image: none;
@@ -61,12 +63,15 @@
         <div class="gj-lg-12">
             <div class="gj-head">
                 <div class="gj-cont">
-                    <img src="/static/images/touxiang.jpg" alt="">
+                    {% if not user.avatar_url %}
+                    <img src="/static/images/user_pic.png" alt="用户头像">
+                    {% else %}
+                    <img src="{{ user.avatar_url }}" alt="用户头像">
+                    {% endif %}
                 </div>
             </div>
         </div>
         <div class="gj-lg-8">
-
             <div class="gj-wk gcl-hb">
                 <nav class="gj-ljdh">
                     <!--路径导航模块-->
@@ -182,26 +187,40 @@
                 </div>
 
                 <div class="gj-body gj-user">
-                    <form action="https://www.guojian945.com/member/index/login.html" method="post">
-                        <input type="hidden" name="referer" value="https%3A%2F%2Fwww.guojian945.com%2Farticle%2F">
-                        <table cellpadding="0" cellspciong="1">
-                            <div class="div1"><i class="fa fa-user" aria-hidden="true"></i>
-                                <input type="text" required="" name="username" value="" placeholder="请输入用户名">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                <input type="password" required="" name="password" value="" placeholder="请输入密码">
-                            </div>
-                            <div class="div2"><img src="/static/images/code.jpg" onclick="this.src=this.src+'?'"
-                                                   title="看不清，换一张">
-                                <input type="text" required="" name="code" class="" value="" placeholder="验证码">
-                                <button type="submit" name="dosubmit" value="登 录">立即登录</button>
-                            </div>
-                            <div class="div3"><a href="qq_login.html" target="_blank" class="btn btn-qq"><i
-                                    class="fa fa-qq" aria-hidden="true"></i> QQ登录</a> <a href="register.html"
-                                                                                         class="btn btn-zc"
-                                                                                         role="button" target="_blank">免费注册</a>
-                                <a href="init.html" class="btn btn-mm" role="button" target="_blank">忘记密码？</a></div>
-                        </table>
+                    {% if not nick_name %}
+                    <form id="login_form_con">
+                        <input type="hidden" name="referer" value="">
+                        <div class="div1"><i class="fa fa-user" aria-hidden="true"></i>
+                            <input type="text" required="" name="username" id="username" value="" placeholder="请输入用户名">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" required="" name="password" id="password" value="" placeholder="请输入密码">
+                        </div>
+                        <div class="div2"><img src="/static/images/code.jpg" onclick="this.src=this.src+&#39;?&#39;"
+                                               title="看不清，换一张">
+                            <input type="text" required="" name="code" class="" value="" placeholder="验证码">
+                            <button type="submit" name="dosubmit" value="登 录">立即登录</button>
+                        </div>
+                        <div class="div3"><a href="register.html" class="btn btn-zc" role="button"
+                                             target="_blank">免费注册</a>
+                            <table cellpadding="0" cellspciong="1">
+                            </table>
                     </form>
+                    {% else %}
+                    <div class="author_card">
+                        {% if not user.avatar_url %}
+                        <a href="#" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
+                        {% else %}
+                         <a href="#" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                        {% endif %}
+                        <div class="author_resume">{{ user.nick_name }}</div>
+                        {% if not user.signature %}
+                        <div class="author_resume">这个人什么也没留下...</div>
+                        {% else %}
+                        <div class="author_resume">{{ user.signature }}</div>
+                        {% endif %}
+                        <a href="/logout">退出</a>
+                    </div>
+                    {% endif %}
                 </div>
 
             </div>

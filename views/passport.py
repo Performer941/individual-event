@@ -1,7 +1,7 @@
 from models import db
 from models.models import User
 from . import passport_blu
-from flask import render_template, request, jsonify, session
+from flask import render_template, request, jsonify, session, redirect, url_for
 
 
 @passport_blu.route("/register.html")
@@ -23,7 +23,11 @@ def register_commit():
             "errno": 1001,
             "errmsg": "已经注册..."
         })
-
+    elif password != password2:
+        return jsonify({
+            "errno": 1002,
+            "errmsg": "两次密码不相同"
+        })
     # 2.2 注册用户
     # 将新用户的数据插入到数据库
     user = User()
@@ -49,9 +53,41 @@ def register_commit():
         print("---->", ret)
         db.session.rollback()  # 如果在将用户的信
         ret = {
-            "errno": 1002,
+            "errno": 1003,
             "errmsg": "注册失败..."
         }
 
         return jsonify(ret)
 
+
+@passport_blu.route("/passport/login", methods=["GET", "POST"])
+def login():
+    # 1. 提取登录时的用户名，密码
+    username = request.json.get("username")
+    password = request.json.get("password")
+
+    # 2. 查询，如果存在表示登录成功，否则失败
+    user = db.session.query(User).filter(User.nick_name == username, User.password_hash == password).first()
+    if user:
+        ret = {
+            "errno": 0,
+            "errmsg": "登录成功"
+        }
+
+        session['user_id'] = user.id
+        session['nick_name'] = username
+    else:
+        ret = {
+            "errno": 2001,
+            "errmsg": "用户名或者密码错误"
+        }
+
+    return jsonify(ret)
+
+
+@passport_blu.route("/logout")
+def logout():
+    # 清空登录状态
+    session.clear()
+
+    return redirect(url_for('index_blu.index'))

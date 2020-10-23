@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <!--引入jquery.min.js组件脚本-->
     <script src="/static/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <!--登录表单点击事件-->
+    <script type="text/javascript" src="/static/js/main.js"></script>
+
     <style type="text/css">
         body {
             background-image: none;
@@ -24,6 +27,7 @@
             background-color: #f5f5f5;
             border-radius: 5px;
         }
+
     </style>
 </head>
 
@@ -294,12 +298,13 @@
                 </div>
 
                 <div class="gj-body gj-user">
-                    <form action="register.html" method="post">
-                        <input type="hidden" name="referer" value="https%3A%2F%2Fwww.guojian945.com%2F">
+                    {% if not nick_name %}
+                    <form id="login_form_con">
+                        <input type="hidden" name="referer" value="">
                         <div class="div1"><i class="fa fa-user" aria-hidden="true"></i>
-                            <input type="text" required="" name="username" value="" placeholder="请输入用户名">
+                            <input type="text" required="" name="username" id="username" value="" placeholder="请输入用户名">
                             <i class="fa fa-lock" aria-hidden="true"></i>
-                            <input type="password" required="" name="password" value="" placeholder="请输入密码">
+                            <input type="password" required="" name="password" id="password" value="" placeholder="请输入密码">
                         </div>
                         <div class="div2"><img src="/static/images/code.jpg" onclick="this.src=this.src+&#39;?&#39;"
                                                title="看不清，换一张">
@@ -311,8 +316,23 @@
                             <table cellpadding="0" cellspciong="1">
                             </table>
                     </form>
+                    {% else %}
+                    <div class="author_card">
+                        {% if not user.avatar_url %}
+                        <a href="#" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
+                        {% else %}
+                         <a href="#" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                        {% endif %}
+                        <div class="author_resume">{{ user.nick_name }}</div>
+                        {% if not user.signature %}
+                        <div class="author_resume">这个人什么也没留下...</div>
+                        {% else %}
+                        <div class="author_resume">{{ user.signature }}</div>
+                        {% endif %}
+                        <a href="/logout">退出</a>
+                    </div>
+                    {% endif %}
                 </div>
-
             </div>
             <div class="gj-wk gcl-hb hidd-sm hidd-md">
                 <!--标签模块-->

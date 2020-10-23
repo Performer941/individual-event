@@ -99,22 +99,24 @@ $(function () {
     // 登录表单提交
     $("#login_form_con").submit(function (e) {
         e.preventDefault()
-        var mobile = $(".login_form #mobile").val();
-        var password = $(".login_form #password").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log(username, password)
 
-        if (!mobile) {
-            $("#login-mobile-err").show();
+        if (!username) {
+            $("#username-err").show();
             return;
         }
 
         if (!password) {
-            $("#login-password-err").show();
+            $("#password-err").show();
             return;
         }
 
         var params = {
-            "mobile": mobile,
+            "username": username,
             "password": password,
+
         }
 
         $.ajax({
@@ -126,9 +128,9 @@ $(function () {
                 if (resp.errno == "0") {
                     // 刷新当前界面
                     location.reload();
+
                 } else {
-                    $("#login-password-err").html(resp.errmsg)
-                    $("#login-password-err").show()
+                    alert(resp.errmsg)
                 }
             }
         })
@@ -146,7 +148,6 @@ $(function () {
         // var smscode = $("#smscode").val();  // 提取短信验证码
         var password = $("#password").val();  // 提取密码
         var password2 = $("#password2").val();  // 提取密码
-        console.log(username, password, password2)
 
         // 发起注册请求
         var params = {
@@ -169,9 +170,7 @@ $(function () {
                     // 跳转到首页
                     window.location.href = '/'
                 } else {
-                    $("#password-err").html(resp.errmsg);
-                    $("#password-err").show();
-                    generateImageCode();
+                    alert(resp.errmsg)
                 }
             }
         })

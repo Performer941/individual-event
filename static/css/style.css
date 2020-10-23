@@ -255,7 +255,6 @@ body {
 }
 
 
-
 /* 小屏幕（平板，大于等于 768px） */
 @media (min-width: 768px) {
     .gj-ui .ui-body p {
