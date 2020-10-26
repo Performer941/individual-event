@@ -1,7 +1,7 @@
 from models import db
-from models.models import User
+from models.models import User, News
 from . import index_blu
-from flask import render_template, session
+from flask import render_template, session, request
 
 
 @index_blu.route("/")
@@ -9,7 +9,9 @@ def index():
     user_id = session.get("user_id")
     nick_name = session.get("nick_name", "")
     user = db.session.query(User).filter(User.id == user_id).first()
-    return render_template("index.html", user=user, nick_name=nick_name)
+    news = db.session.query(News).all()
+
+    return render_template("index.html", user=user, nick_name=nick_name, news=news)
 
 
 @index_blu.route("/index02.html")
@@ -17,6 +19,7 @@ def index02():
     user_id = session.get("user_id")
     nick_name = session.get("nick_name", "")
     user = db.session.query(User).filter(User.id == user_id).first()
+
     return render_template("index02.html", user=user, nick_name=nick_name)
 
 
@@ -44,3 +47,10 @@ def personage():
     return render_template("personage.html", user=user, nick_name=nick_name)
 
 
+@index_blu.route("/detail/<int:news_id>")
+def detail(news_id):
+    user_id = session.get("user_id")
+    user = db.session.query(User).filter(User.id == user_id).first()
+    news = db.session.query(News).filter(News.id == news_id).first()
+
+    return render_template("detail.html", news=news, user=user)

@@ -31,6 +31,13 @@ class Category(db.Model):
     name = db.Column(db.String(64), nullable=False)  # 分类名
 
 
+class Collection(db.Model):
+    __tablename__ = "collection"
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)  # 新闻编号
+    news_id = db.Column(db.Integer, db.ForeignKey("news.id"), primary_key=True)  # 分类编号
+    create_time = db.Column(db.DateTime, default=datetime.now)  # 收藏创建时间
+
+
 class User(db.Model):
     """用户"""
     __tablename__ = "user"

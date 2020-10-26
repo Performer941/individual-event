@@ -12,10 +12,14 @@
     <link rel="stylesheet" href="/static/css/guojian.min.css">
     <!--引入style.css自定义样式表-->
     <link rel="stylesheet" href="/static/css/style.css">
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
     <!--引入jquery.min.js组件脚本-->
     <script src="/static/js/jquery-1.12.4.min.js" type="text/javascript"></script>
     <!--登录表单点击事件-->
     <script type="text/javascript" src="/static/js/main.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.pagination.min.js"></script>
+
+
 
     <style type="text/css">
         body {
@@ -62,186 +66,35 @@
 <div class="gcont">
     <div class="row">
         <div class="gj-lg-8">
-            <div class="gj-slide1 gcl-hb">
-                <!--响应式轮播图-->
-                <div class="swiper-container swiper-container-horizontal">
-                    <div class="swiper-wrapper"
-                         style="transform: translate3d(-2244px, 0px, 0px); transition-duration: 0ms;">
-                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev"
-                             data-swiper-slide-index="1" style="width: 748px;">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/2.html"><img
-                                    src="/static/images/1517455943642890.jpg" alt="响应式橙色大气html5企业网站模板GJ-qiye">
-                                <p>响应式橙色大气html5企业网站模板GJ-qiye</p></a>
-                        </div>
-                        <div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0"
-                             style="width: 748px;">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/1.html"><img
-                                    src="/static/images/180201024536538.jpg" alt="响应式HTML5黑白系个人网站主题GJ-blog1.0清爽版">
-                                <p>响应式HTML5黑白系个人网站主题GJ-blog1.0清爽版</p></a>
-                        </div>
-                        <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next"
-                             data-swiper-slide-index="1" style="width: 748px;">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/2.html"><img
-                                    src="/static/images/1517455943642890.jpg" alt="响应式橙色大气html5企业网站模板GJ-qiye">
-                                <p>响应式橙色大气html5企业网站模板GJ-qiye</p></a>
-                        </div>
-                        <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0"
-                             style="width: 748px;">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/1.html"><img
-                                    src="/static/images/180201024536538.jpg" alt="响应式HTML5黑白系个人网站主题GJ-blog1.0清爽版">
-                                <p>响应式HTML5黑白系个人网站主题GJ-blog1.0清爽版</p></a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span
-                            class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
-                            class="swiper-pagination-bullet"></span></div>
-                    <!--分页器-->
-                    <div class="swiper-button-prev">
-                        <!--导航小按钮-->
-                        <i class="fa fa-chevron-circle-left fa-2x" aria-hidden="true"></i></div>
-                    <div class="swiper-button-next">
-                        <!--导航小按钮-->
-                        <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></div>
-                </div>
-            </div>
+
 
             <div class="gj-wk gcl-hb">
                 <!--媒体列表-->
                 <div class="gj-bt">
                     <h3><i class="fa fa-list-ul" aria-hidden="true"></i> 最新发布</h3>
                 </div>
+                {% for new in news %}
                 <div class="gj-body gul-tuw1">
                     <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/13.html"><img
-                                    src="/static/images/180313112630855.jpg" alt="未备案网站免费使用畅言社会化评论系统的教程"></a>
-                        </div>
                         <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/13.html">
-                                <h4>未备案网站免费使用畅言社会化评论系统的教程</h4>
+                            <a href="/detail/{{ new.id }}">
+                                <h4>{{ new.title }}</h4>
                             </a>
-                            <p>好端端的多说社会化评论系统的官方近期发表了声明即将关闭服务，而大名鼎鼎的搜狐畅言评论系统需要网站域名备案才能用，那么今天博主就教大...</p>
+                            <p>{{ new.digest }}</p>
                             <div class="gtw-sx">
                                 <i class="fa fa-plus-square" aria-hidden="true"> 原创</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-02-27</i>
+                                <i class="fa fa-clock-o" aria-hidden="true"> {{ new.create_time }}</i>
                                 <i class="fa fa-eye" aria-hidden="true"> 3867</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index1.html"><i
+                                <a href="/detail/{{ new.id }}"><i
                                         class="fa fa-folder-open" aria-hidden="true"> 知识干货</i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/11.html"><img
-                                    src="/static/images/180313112722593.jpg" alt="一个可怕的现象愈演愈烈：穷人家的“富二代”越来越多"></a>
-                        </div>
-                        <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/11.html">
-                                <h4>一个可怕的现象愈演愈烈：穷人家的“富二代”越来越多</h4>
-                            </a>
-                            <p>
-                                今天的父母，总想着把最好的条件给孩子，这其实是在害孩子。成长过程中，物质越充裕，精神越疲敝；精神疲敝时，创造物质的脚步自然会停歇。反之，给孩子真实的成长，让孩子懂得困难与艰辛，教孩子珍惜馈赠...</p>
-                            <div class="gtw-sx">
-                                <i class="fa fa-plus-square" aria-hidden="true"> 青榄家长地带</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-02-24</i>
-                                <i class="fa fa-eye" aria-hidden="true"> 1412</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index3.html"><i
-                                        class="fa fa-folder-open" aria-hidden="true"> 谈天说地</i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/8.html"><img
-                                    src="/static/images/180313112951280.jpg" alt="phpStudy最新使用教程 - 让天下没有难配的php环境"></a>
-                        </div>
-                        <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/8.html">
-                                <h4>phpStudy最新使用教程 - 让天下没有难配的php环境</h4>
-                            </a>
-                            <p>
-                                一次性安装，无须配置即可使用，是非常方便、好用的PHP调试环境。该程序绿色小巧简易迷你仅有32M，有专门的控制面板。总之学习PHP只需一个包。对学习PHP的新手来说，WINDOWS下环境配置是一件很困难的事；...</p>
-                            <div class="gtw-sx">
-                                <i class="fa fa-plus-square" aria-hidden="true"> 原创</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-02-01</i>
-                                <i class="fa fa-eye" aria-hidden="true"> 2497</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index1.html"><i
-                                        class="fa fa-folder-open" aria-hidden="true"> 知识干货</i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/7.html"><img
-                                    src="/static/images/180313113309948.jpg" alt="博主早年崇拜的知名80后创业标杆人物茅侃侃竟然自杀了"></a>
-                        </div>
-                        <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/7.html">
-                                <h4>博主早年崇拜的知名80后创业标杆人物茅侃侃竟然自杀了</h4>
-                            </a>
-                            <p>茅侃侃个人经历：1983年出生于北京，小学五年级开始玩电脑，14岁便在《大众软件》等杂志发表数篇文章，并自行设计开发软件。2004年开始创业...</p>
-                            <div class="gtw-sx">
-                                <i class="fa fa-plus-square" aria-hidden="true"> 原创</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-01-27</i>
-                                <i class="fa fa-eye" aria-hidden="true"> 2148</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index3.html"><i
-                                        class="fa fa-folder-open" aria-hidden="true"> 谈天说地</i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/5.html"><img
-                                    src="/static/images/180313113835757.jpg" alt="一枚程序媛妹子口中的IT男其实是这样的"></a>
-                        </div>
-                        <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/5.html">
-                                <h4>一枚程序媛妹子口中的IT男其实是这样的</h4>
-                            </a>
-                            <p>本人女，程序员一枚。讲讲我周围的it男吧。坐在我对面的小哥，有一阵当当做活动，满200减100什么的吧，他说他买书了。过几天，搬了一摞书回...</p>
-                            <div class="gtw-sx">
-                                <i class="fa fa-plus-square" aria-hidden="true"> 知乎</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-01-27</i>
-                                <i class="fa fa-eye" aria-hidden="true"> 2969</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index3.html"><i
-                                        class="fa fa-folder-open" aria-hidden="true"> 谈天说地</i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gtw-ul gclear">
-                        <div class="gtw-img">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/4.html"><img
-                                    src="/static/images/180125053634150.jpg" alt="给web前端开发人员的一些建议"></a>
-                        </div>
-                        <div class="gtw-body">
-                            <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/4.html">
-                                <h4>给web前端开发人员的一些建议</h4>
-                            </a>
-                            <p>前端这一行，入门并不困难，掌握XHTML+CSS之后，基本上就可以找到一份工作。其他的东西，我们可以入职后再慢慢学习。那怎么才算掌握？掌握...</p>
-                            <div class="gtw-sx">
-                                <i class="fa fa-plus-square" aria-hidden="true"> 博客园</i>
-                                <i class="fa fa-clock-o" aria-hidden="true"> 2018-01-25</i>
-                                <i class="fa fa-eye" aria-hidden="true"> 1458</i>
-                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index1.html"><i
-                                        class="fa fa-folder-open" aria-hidden="true"> 知识干货</i></a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <!--gul-tuw1-结束-->
-                <nav class="gj-page">
-                    <span class="pageinfo">共<strong>1</strong>页<strong>6</strong>条记录</span><a
-                        href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/111.html"
-                        class="homepage">首页</a><a
-                        href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/111.html"
-                        class="nopage">上页</a><a
-                        href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/111.html"
-                        class="listpage curpage">1</a><a
-                        href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/111.html"
-                        class="nopage">下页</a><a
-                        href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/111.html"
-                        class="endpage">尾页</a></nav>
+                {% endfor %}
+
+
+
             </div>
 
             <div class="gj-gg">
@@ -266,7 +119,10 @@
                                 <h4>响应式橙色大气html5企业网站模板GJ-qiye（YzmCMS整站版）</h4>
                             </a>
                                 <p>响应式橙色大气html5企业网站模板GJ-qiye（YzmCMS整站版），自适应PC端、ipad、手机端，...</p>
-                                <div class="gtw-sx"><span>阅读：6089</span> | <span>发布时间：2018-02-01</span></div>
+                                <div class="gtw-sx"><span>阅读：608
+                                    <div id="pagination" class="page">
+                                    </div>9</span> |
+                                    <span>发布时间：2018-02-01</span></div>
                             </div>
                         </div>
                     </div>
@@ -301,10 +157,12 @@
                     {% if not nick_name %}
                     <form id="login_form_con">
                         <input type="hidden" name="referer" value="">
-                        <div class="div1"><i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="div1">
+                            <i class="fa fa-user" aria-hidden="true"></i>
                             <input type="text" required="" name="username" id="username" value="" placeholder="请输入用户名">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            <input type="password" required="" name="password" id="password" value="" placeholder="请输入密码">
+                            <!--                            <i class="fa fa-lock" aria-hidden="true"></i>-->
+                            <input type="password" required="" name="password" id="password" value=""
+                                   placeholder="请输入密码">
                         </div>
                         <div class="div2"><img src="/static/images/code.jpg" onclick="this.src=this.src+&#39;?&#39;"
                                                title="看不清，换一张">
@@ -321,7 +179,7 @@
                         {% if not user.avatar_url %}
                         <a href="/personage" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
                         {% else %}
-                         <a href="/personage" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                        <a href="/personage" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
                         {% endif %}
                         <div class="author_resume">{{ user.nick_name }}</div>
                         {% if not user.signature %}
@@ -452,6 +310,7 @@
 
 <!--引入guojian.min.js组件脚本-->
 <script src="/static/js/guojian.min.js" type="text/javascript"></script>
+
 
 <!--GJ-UI组件模块js代码开始-->
 <script>
