@@ -9,9 +9,11 @@ def index():
     user_id = session.get("user_id")
     nick_name = session.get("nick_name", "")
     user = db.session.query(User).filter(User.id == user_id).first()
-    news = db.session.query(News).all()
+    news = db.session.query(News)
+    page = int(request.args.get("page", 1))
+    paginate = news.paginate(page, 15, False)
 
-    return render_template("index.html", user=user, nick_name=nick_name, news=news)
+    return render_template("index.html", user=user, nick_name=nick_name, news=news, paginate=paginate)
 
 
 @index_blu.route("/index02.html")

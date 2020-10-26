@@ -8,6 +8,7 @@
 
     <!--引入Font Awesome字体库样式表-->
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <!--引入guojian.min.css组件样式表-->
     <link rel="stylesheet" href="/static/css/guojian.min.css">
     <!--引入style.css自定义样式表-->
@@ -18,7 +19,6 @@
     <!--登录表单点击事件-->
     <script type="text/javascript" src="/static/js/main.js"></script>
     <script type="text/javascript" src="/static/js/jquery.pagination.min.js"></script>
-
 
 
     <style type="text/css">
@@ -68,12 +68,12 @@
         <div class="gj-lg-8">
 
 
-            <div class="gj-wk gcl-hb">
+            <div class="gj-wk gcl-hb inframe_body">
                 <!--媒体列表-->
                 <div class="gj-bt">
                     <h3><i class="fa fa-list-ul" aria-hidden="true"></i> 最新发布</h3>
                 </div>
-                {% for new in news %}
+                {% for new in paginate.items %}
                 <div class="gj-body gul-tuw1">
                     <div class="gtw-ul gclear">
                         <div class="gtw-body">
@@ -92,8 +92,18 @@
                     </div>
                 </div>
                 {% endfor %}
-
-
+                <div id="paginations" class="page"></div>
+                <script>
+                    $(function () {
+                        $("#paginations").pagination({
+                            currentPage: {{ paginate.page }},
+                            totalPage: {{ paginate.pages }},
+                            callback: function (current) {
+                                window.location.href = "/?page=" + current;
+                            }
+                        });
+                    });
+                </script>
 
             </div>
 
