@@ -38,9 +38,12 @@ function check_comm(obj){
 	if(content === ''){
 	    alert('你不打算说点什么吗？');
 		return false;
+		
+		
 	}
 	return true;
 }
+
 
 function check_rep(obj){
     var content = obj.content.value;
@@ -50,3 +53,4 @@ function check_rep(obj){
 	}
 	return true;
 }
+
