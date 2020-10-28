@@ -1,7 +1,8 @@
 from models import db
 from models.models import User
 from . import passport_blu
-from flask import render_template, request, jsonify, session, redirect, url_for
+from utils.captcha.captcha import captcha
+from flask import render_template, request, jsonify, session, redirect, url_for, make_response
 
 
 @passport_blu.route("/register.html")
@@ -14,8 +15,17 @@ def register_commit():
     username = request.json.get('username')
     password = request.json.get('password')
     password2 = request.json.get('password2')
+    image_code = request.json.get('image_code')
 
-    print(username, password, password2)
+    print(username, password, password2, image_code)
+
+    # 验证图片验证码是否争取
+    if session.get("image_code") != image_code:
+        ret = {
+            "errno": 1003,
+            "errmsg": "重新输入验证码"
+        }
+        return jsonify(ret)
 
     if db.session.query(User).filter(User.nick_name == username).first():
 
@@ -91,3 +101,27 @@ def logout():
     session.clear()
 
     return redirect(url_for('index_blu.index'))
+
+
+@passport_blu.route("/passport/image_code")
+def image_code():
+    # 读取一个图片
+    # with open("/static/images/logo.jpg", "rb") as f:
+    #     image = f.read()
+
+    # 生成验证码
+    # hash值  验证码值  图片内容
+    name, text, image = captcha.generate_captcha()
+
+    print("刚刚生成的验证码：", text)
+
+    # 通过session的方式，缓存刚刚生成的验证码，否则注册时不知道刚刚生成的是多少
+    session['image_code'] = text
+
+    # 返回响应内容
+    resp = make_response(image)
+
+    # 设置内容类型
+    resp.headers['Content-Type'] = 'image/png'
+
+    return resp

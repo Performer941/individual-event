@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>会员注册</title>
+    <title>Stage performers</title>
     <!--引入Font Awesome字体库样式表-->
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <!--引入guojian.min.css组件样式表-->
@@ -30,9 +30,10 @@
             <input type="text" name="username" id="username" value="" placeholder="请输入用户名">
             <input type="password" name="password" id="password" value="" placeholder="请输入密码">
             <input type="password" name="password2" id="password2" value="" placeholder="请再次输入密码">
-            <input type="text" name="code" id="code" value="" placeholder="验证码">
+            <!--<input type="text" name="code" id="code" value="" placeholder="验证码">-->
+            <input type="text" name="image_code" id="image_code"  placeholder="请输入验证码">
             <div class="gjdl-zc">
-                <img src="/static/images/code.jpg"  onclick="this.src=this.src+'?'" title="看不清，换一张">
+                <img src="/static/images/code.jpg" class="get_pic_code" onclick="generateImageCode()">
                 <button type="submit" name="" value="同意注册">立即注册</button>
             </div>
         </table>
@@ -51,5 +52,4 @@
 
 
 </body>
-
 </html>

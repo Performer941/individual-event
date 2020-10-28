@@ -71,12 +71,12 @@
                     {% if user %}
                     <h4>{{ user.nick_name }} </h4>
                     &emsp;&emsp;
-                        {% if user.signature %}
-                         <h4> {{ user.signature }} </h4>
-<!--                        <p>{{ user.signature }}</p>-->
-                        {% else %}
-                        <h4> 这个人很懒，什么也没留下... </h4>
-                        {% endif %}
+                    {% if user.signature %}
+                    <h4> {{ user.signature }} </h4>
+                    <!--                        <p>{{ user.signature }}</p>-->
+                    {% else %}
+                    <h4> 这个人很懒，什么也没留下... </h4>
+                    {% endif %}
                     {% else %}
                     <h4><a href="/">请先登录</a></h4>
                     {% endif %}
@@ -168,11 +168,11 @@
                                     <a href="javascript:void(0);" class="user_name" rel="nofollow">{{ comment.user.nick_name }}：</a> {{ comment.content }} </span>
                                 </span>
                             </p>
-                            <div class="gpl-list">
-                                <p><span>{{ create_time }}</span>
-                                    <a href="javascript:toreply(&#39;133&#39;);">回复</a>
-                                </p>
-                            </div>
+                            <from class="reply_form fl" data-news-id="{{ news.id }}" data-comment-id="{{ comment.id }}">
+                                <textarea class="reply_input"></textarea>
+                                <input type="submit" name="" value="回复" class="reply_sub fr">
+                                <input type="reset" name="" value="取消" class="reply_cancel fr">
+                            </from>
                             {% endfor %}
                         </li>
                     </ul>
@@ -180,195 +180,64 @@
 
 
             </div>
-<!--            <div class="gj-lg-4">-->
-<!--                <div class="gj-wk gcl-hb hidd-sm hidd-md">-->
-<!--                    <div class="gj-bt">-->
-<!--                        <h3><i class="fa fa-user-circle-o" aria-hidden="true"></i> 会员信息</h3>-->
-<!--                    </div>-->
-
-<!--                    <div class="gj-body gj-user">-->
-<!--                        <form action="https://www.guojian945.com/member/index/login.html" method="post">-->
-<!--                            <input type="hidden" name="referer"-->
-<!--                                   value="https%3A%2F%2Fwww.guojian945.com%2Farticle%2F11.html">-->
-<!--                            <div class="div1"><i class="fa fa-user" aria-hidden="true"></i>-->
-<!--                                <input type="text" required="" name="username" value="" placeholder="请输入用户名">-->
-<!--                                <i class="fa fa-lock" aria-hidden="true"></i>-->
-<!--                                <input type="password" required="" name="password" value="" placeholder="请输入密码">-->
-<!--                            </div>-->
-<!--                            <div class="div2"><img src="/static/images/code.jpg" onclick="this.src=this.src+&#39;?&#39;"-->
-<!--                                                   title="看不清，换一张">-->
-<!--                                <input type="text" required="" name="code" class="" value="" placeholder="验证码">-->
-<!--                                <button type="submit" name="dosubmit" value="登 录">立即登录</button>-->
-<!--                            </div>-->
-<!--                            <div class="div3">-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/register.html"-->
-<!--                                   class="btn btn-zc" role="button" target="_blank">免费注册</a>-->
-<!--                                <table cellpadding="0" cellspciong="1">-->
 
 
-<!--                                </table>-->
-<!--                        </form>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--                <div class="gj-wk gcl-hb hidd-sm hidd-md">-->
-<!--                    &lt;!&ndash;标签模块&ndash;&gt;-->
-<!--                    <div class="gj-bt">-->
-<!--                        <h3><i class="fa fa-calendar" aria-hidden="true"></i> 文章归档</h3>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gj-link1">-->
-<!--                        <ul>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/1517475072.html">2018年02月(3)</a>-->
-<!--                            </li>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/1516872636.html">2018年01月(3)</a>-->
-<!--                            </li>-->
-
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="gj-wk gcl-hb">-->
-<!--                    &lt;!&ndash;侧栏-图文列表&ndash;&gt;-->
-<!--                    <div class="gj-bt">-->
-<!--                        <h3><i class="fa fa-thumbs-up" aria-hidden="true"></i> 博主推荐</h3>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gli-tuw1">-->
-<!--                        <div class="gtw-li gclear">-->
-<!--                            <div class="gtw-img gj-left"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/8.html"><img-->
-<!--                                    src="/static/images/180313112951280.jpg" alt=""></a></div>-->
-<!--                            <div class="gtw-body"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/8.html">-->
-<!--                                <h4>phpStudy最新使用教程 - 让天下没有难配的php环境</h4>-->
-<!--                            </a> <span><i class="fa fa-clock-o"> 2018-02-01</i></span> <span><i-->
-<!--                                    class="fa fa-eye"> 2497</i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gli-tuw1">-->
-<!--                        <div class="gtw-li gclear">-->
-<!--                            <div class="gtw-img gj-left"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/7.html"><img-->
-<!--                                    src="/static/images/180313113309948.jpg" alt=""></a></div>-->
-<!--                            <div class="gtw-body"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/7.html">-->
-<!--                                <h4>博主早年崇拜的知名80后创业标杆人物茅侃侃竟然自杀了</h4>-->
-<!--                            </a> <span><i class="fa fa-clock-o"> 2018-01-27</i></span> <span><i-->
-<!--                                    class="fa fa-eye"> 2148</i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gli-tuw1">-->
-<!--                        <div class="gtw-li gclear">-->
-<!--                            <div class="gtw-img gj-left"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/5.html"><img-->
-<!--                                    src="/static/images/180313113835757.jpg" alt=""></a></div>-->
-<!--                            <div class="gtw-body"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/5.html">-->
-<!--                                <h4>一枚程序媛妹子口中的IT男其实是这样的</h4>-->
-<!--                            </a> <span><i class="fa fa-clock-o"> 2018-01-27</i></span> <span><i-->
-<!--                                    class="fa fa-eye"> 2969</i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gli-tuw1">-->
-<!--                        <div class="gtw-li gclear">-->
-<!--                            <div class="gtw-img gj-left"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/4.html"><img-->
-<!--                                    src="/static/images/180125053634150.jpg" alt=""></a></div>-->
-<!--                            <div class="gtw-body"><a-->
-<!--                                    href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/4.html">-->
-<!--                                <h4>给web前端开发人员的一些建议</h4>-->
-<!--                            </a> <span><i class="fa fa-clock-o"> 2018-01-25</i></span> <span><i-->
-<!--                                    class="fa fa-eye"> 1458</i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="gj-wk gcl-hb">-->
-<!--                    &lt;!&ndash;标签模块&ndash;&gt;-->
-<!--                    <div class="gj-bt">-->
-<!--                        <h3><i class="fa fa-tags" aria-hidden="true"></i> 热门标签</h3>-->
-<!--                    </div>-->
-<!--                    <div class="gj-body gj-link3">-->
-<!--                        <ul>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/51.html"-->
-<!--                                   target="_blank">web前端</a></li>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/41.html"-->
-<!--                                   target="_blank">GJ-UI</a></li>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/22.html"-->
-<!--                                   target="_blank">YzmCMS</a></li>-->
-<!--                            <li>-->
-<!--                                <a href="https://www.17sucai.com/preview/1125772/2019-11-12/%E9%83%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/13.html"-->
-<!--                                   target="_blank">郭健</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-        <div class="hidd-xs gcl-yh" style="border: 0">
-            <!--返回顶部-->
-            <a class="gj-top"
-               style="z-index: 1030; position: fixed; right: 15px; bottom: 15px; cursor: pointer; display: none;"><i
-                    class="fa fa-arrow-up" aria-hidden="true"></i></a>
-        </div>
-
-        <footer class="gcl-yh">
-            <!--footer底部-->
-            <div class="gj-footer">
-                <p>Copyright © 2018. 郭健博客 | Powered by <a href="javascript:;" target="_blank">YzmCMS</a></p>
-                <p>备案：湘ICP备16017252号-1 博客基于GJ-UI组件、YzmCMS内容管理系统</p>
+            <div class="hidd-xs gcl-yh" style="border: 0">
+                <!--返回顶部-->
+                <a class="gj-top"
+                   style="z-index: 1030; position: fixed; right: 15px; bottom: 15px; cursor: pointer; display: none;"><i
+                        class="fa fa-arrow-up" aria-hidden="true"></i></a>
             </div>
-        </footer>
-        <!--GJ-UI组件模块html代码结束-->
+
+            <footer class="gcl-yh">
+                <!--footer底部-->
+                <div class="gj-footer">
+                    <p>Copyright © 2018. 郭健博客 | Powered by <a href="javascript:;" target="_blank">YzmCMS</a></p>
+                    <p>备案：湘ICP备16017252号-1 博客基于GJ-UI组件、YzmCMS内容管理系统</p>
+                </div>
+            </footer>
+            <!--GJ-UI组件模块html代码结束-->
 
 
-        <!--引入guojian.min.js组件脚本-->
-        <script src="/static/js/guojian.min.js" type="text/javascript"></script>
+            <!--引入guojian.min.js组件脚本-->
+            <script src="/static/js/guojian.min.js" type="text/javascript"></script>
 
-        <!--GJ-UI组件模块js代码开始-->
-        <script>
-            /*GJ-UI响应式导航栏*/
-            $(document).ready(function () {
-                $(".gbar").click(function () {
-                    $(".gnav-ul").slideToggle("slow");
-                    return false
-                })
-            });
-        </script>
-        <script>
-            /*返回顶部开始*/
-            jQuery(function ($) {
-                $('.gj-top').toTop({
-                    autohide: true,
-                    offset: 320,
-                    speed: 500,
-                    right: 15,
-                    bottom: 15
-                })
-            });
-        </script>
-        <script type="text/javascript" src="/static/js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="/static/js/js.js"></script>
-        <script type="text/javascript" src="/static/js/jquery.qqFace.js"></script>
-        <script type="text/javascript" src="/static/js/detail.js"></script>
-        <!--        <script type="text/javascript">-->
-        <!--            $(function () {-->
-        <!--                //评论QQ表情-->
-        <!--                $('.emotion').qqFace({-->
-        <!--                    assign: 'content',-->
-        <!--                    path: 'https://www.guojian945.com/common/static/images/face/'-->
+            <!--GJ-UI组件模块js代码开始-->
+            <script>
+                /*GJ-UI响应式导航栏*/
+                $(document).ready(function () {
+                    $(".gbar").click(function () {
+                        $(".gnav-ul").slideToggle("slow");
+                        return false
+                    })
+                });
+            </script>
+            <script>
+                /*返回顶部开始*/
+                jQuery(function ($) {
+                    $('.gj-top').toTop({
+                        autohide: true,
+                        offset: 320,
+                        speed: 500,
+                        right: 15,
+                        bottom: 15
+                    })
+                });
+            </script>
+            <script type="text/javascript" src="/static/js/jquery-1.8.2.min.js"></script>
+            <script type="text/javascript" src="/static/js/js.js"></script>
+            <script type="text/javascript" src="/static/js/jquery.qqFace.js"></script>
+            <script type="text/javascript" src="/static/js/detail.js"></script>
+            <!--        <script type="text/javascript">-->
+            <!--            $(function () {-->
+            <!--                //评论QQ表情-->
+            <!--                $('.emotion').qqFace({-->
+            <!--                    assign: 'content',-->
+            <!--                    path: 'https://www.guojian945.com/common/static/images/face/'-->
 
-        <!--                });-->
-        <!--            });-->
-        <!--        </script>-->
+            <!--                });-->
+            <!--            });-->
+            <!--        </script>-->
 
 
 </body>

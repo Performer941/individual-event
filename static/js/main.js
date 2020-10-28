@@ -144,7 +144,7 @@ $(function () {
 
         // 取到用户输入的内容
         var username = $("#username").val();  // 提取手机号
-        // var imageCode = $("#imagecode").val();  // 提取图片验证码
+        var imageCode = $("#image_code").val();  // 提取图片验证码
         // var smscode = $("#smscode").val();  // 提取短信验证码
         var password = $("#password").val();  // 提取密码
         var password2 = $("#password2").val();  // 提取密码
@@ -153,10 +153,10 @@ $(function () {
         var params = {
             "username": username,
             // "smscode": smscode,
-            // "image_code": imageCode,
             // "image_code_id": imageCodeId,
             "password": password,
-            "password2": password2
+            "password2": password2,
+            "image_code": imageCode
         };
 
         $.ajax({
@@ -171,6 +171,7 @@ $(function () {
                     window.location.href = '/'
                 } else {
                     alert(resp.errmsg)
+                    generateImageCode();
                 }
             }
         })
