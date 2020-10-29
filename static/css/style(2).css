@@ -133,13 +133,6 @@ a:focus{outline:none; -moz-outline:none;}		/*解决  去除 a 链接点击后有
 .hot-recommend .ys2 p{ font-size:18px; color:#000; text-align:center; margin:13px 0 15px;}
 .hot-recommend .ys2 .ys2-a1{ display:block; width:144px; height:29px; line-height:29px; text-align:center; font-size:12px; color:#fff; background:url(../images/ys2-a-bg.gif) no-repeat; margin:0 auto;}
 
-/*广告栏*/
-.advertisement{ height:74px; background-color:#EBEBEB; margin-top:20px; overflow:hidden;}
-
-/*广告栏 二*/
-.advertisement2{ width:1198px; height:94px; border:1px solid #ECECEC; background-color:#FDFDFD;margin:20px auto;}
-.advertisement2 li{ float:left; width:148px; height:94px; border-right:1px solid #ECECEC;}
-.advertisement2 li img{ margin:23px auto;}
 
 /*底部服务*/
 .ft-service{ width:100%;margin-top:70px; border-top:2px solid #AB5100; border-bottom:1px solid #DFDFDF; padding:17px 0 20px;}

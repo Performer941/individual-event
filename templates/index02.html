@@ -42,9 +42,9 @@
         </div>
         <i class="gbar fa fa-bars" aria-hidden="true"></i>
         <ul class="gnav-ul gj-right">
-            <li class="gxz">
-                <a href="/">首页</a></li>
             <li>
+                <a href="/">首页</a></li>
+            <li class="gxz">
                 <a href="index02.html">知识干货</a>
             </li>
             <li>
@@ -217,7 +217,8 @@
                         {% if not user.avatar_url %}
                         <a href="#" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
                         {% else %}
-                         <a href="#" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                        <a href="/personage" class="author_pic"><img src="/static/upload/{{ user.avatar_url }}"
+                                                                     alt="author_pic" width="120" height="120"></a>
                         {% endif %}
                         <div class="author_resume">{{ user.nick_name }}</div>
                         {% if not user.signature %}

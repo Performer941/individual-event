@@ -28,13 +28,13 @@ class News(db.Model):
 class Category(db.Model):
     """新闻分类"""
     __tablename__ = "category"
-
     id = db.Column(db.Integer, primary_key=True)  # 分类编号
     name = db.Column(db.String(64), nullable=False)  # 分类名
 
 
 class Collection(db.Model):
     __tablename__ = "collection"
+
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)  # 新闻编号
     news_id = db.Column(db.Integer, db.ForeignKey("news.id"), primary_key=True)  # 分类编号
     create_time = db.Column(db.DateTime, default=datetime.now)  # 收藏创建时间
@@ -70,17 +70,6 @@ class Comment(db.Model):
     create_time = db.Column(db.DateTime, default=datetime.now)  # 记录的创建时间
     update_time = db.Column(db.DateTime, default=datetime.now)  # 记录的更新时间
     user = db.relationship("User", backref="comments")  # 评论的创建者
-    # 实现对评论的回复（其实就是自关联）
-    parent_id = db.Column(db.Integer, db.ForeignKey("comment.id"))  # 父评论id
 
 
-class CommentLike(db.Model):
-    """
-    评论点赞
-    评论表 与 用户表之间是多对多关系，因为一个评论可以被多个用户点赞，一个用户也可以点赞多个评论
-    所以，此表就相当于Comment与User的 中间表
-    """
-    __tablename__ = "comment_like"
-    comment_id = db.Column("comment_id", db.Integer, db.ForeignKey("comment.id"), primary_key=True)  # 评论编号
-    user_id = db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True)  # 用户编号
 

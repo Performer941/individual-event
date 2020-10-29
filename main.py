@@ -3,7 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from models import db
-from views import index_blu, passport_blu, detail_blu
+from views import index_blu, passport_blu, detail_blu, user_blu
 
 # 创建Flask应用对象
 app = Flask(__name__)
@@ -15,6 +15,7 @@ app.config.from_pyfile("config.ini")
 app.register_blueprint(index_blu)
 app.register_blueprint(passport_blu)
 app.register_blueprint(detail_blu)
+app.register_blueprint(user_blu)
 
 # 初始化数据库
 db.init_app(app)

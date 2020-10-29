@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <!--引入guojian.min.css组件样式表-->
     <link rel="stylesheet" href="/static/css/guojian.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
     <!--引入style.css自定义样式表-->
     <link rel="stylesheet" href="/static/css/style.css">
     <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
@@ -47,7 +48,7 @@
         </div>
         <i class="gbar fa fa-bars" aria-hidden="true"></i>
         <ul class="gnav-ul gj-right">
-            <li>
+            <li class="gxz">
                 <a href="/">首页</a>
             </li>
             <li>
@@ -65,8 +66,6 @@
 <div class="gcont">
     <div class="row">
         <div class="gj-lg-8">
-
-
             <div class="gj-wk gcl-hb inframe_body">
                 <!--媒体列表-->
                 <div class="gj-bt">
@@ -95,12 +94,22 @@
                 <script>
                     $(function () {
                         $("#paginations").pagination({
-                            currentPage: {{ paginate.page }},
-                            totalPage: {{ paginate.pages }},
-                            callback: function (current) {
-                                window.location.href = "/?page=" + current;
+                            currentPage: {
+                        {
+                            paginate.page
+                        }
+                    },
+                        totalPage: {
+                            {
+                                paginate.pages
                             }
-                        });
+                        }
+                    ,
+                        callback: function (current) {
+                            window.location.href = "/?page=" + current;
+                        }
+                    })
+                        ;
                     });
                 </script>
 
@@ -186,7 +195,8 @@
                         {% if not user.avatar_url %}
                         <a href="/personage" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
                         {% else %}
-                        <a href="/personage" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                        <a href="/personage" class="author_pic"><img src="/static/upload/{{ user.avatar_url }}"
+                                                                     alt="author_pic" width="120" height="120"></a>
                         {% endif %}
                         <div class="author_resume">{{ user.nick_name }}</div>
                         {% if not user.signature %}

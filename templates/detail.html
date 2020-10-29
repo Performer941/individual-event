@@ -64,16 +64,16 @@
             <div class="gj-head">
                 <div class="gj-cont">
                     {% if not user.avatar_url %}
-                    <a href="/personage" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
+                    <a href="/" class="author_pic"><img src="/static/images/user_pic.png" alt="author_pic"></a>
                     {% else %}
-                    <a href="/personage" class="author_pic"><img src="{{ user.avatar_url }}" alt="author_pic"></a>
+                    <a href="/" class="author_pic"><img src="/static/upload/{{ user.avatar_url }}" alt="author_pic"></a>
                     {% endif %}
                     {% if user %}
                     <h4>{{ user.nick_name }} </h4>
                     &emsp;&emsp;
                     {% if user.signature %}
                     <h4> {{ user.signature }} </h4>
-                    <!--                        <p>{{ user.signature }}</p>-->
+                    <!--<p>{{ user.signature }}</p>-->
                     {% else %}
                     <h4> 这个人很懒，什么也没留下... </h4>
                     {% endif %}
@@ -111,7 +111,6 @@
                                     "bdStyle": "0",
                                     "bdSize": "24"
                                 },
-
                                 "share": {}
                             };
                             with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
@@ -159,20 +158,18 @@
                     </div>
                     <ul class="gpl-ul">
                         <li>
+                            <hr>
                             {% for comment in news.comments %}
                             <div class="gpl-user">
                                 <h4>{{ comment.user.nick_name }}</h4>
                             </div>
-                            <p class="gpl-cont">
+                            <div class="gpl-cont">
+
                                 <span class="original_comment"><span class="original_comment">
                                     <a href="javascript:void(0);" class="user_name" rel="nofollow">{{ comment.user.nick_name }}：</a> {{ comment.content }} </span>
                                 </span>
-                            </p>
-                            <from class="reply_form fl" data-news-id="{{ news.id }}" data-comment-id="{{ comment.id }}">
-                                <textarea class="reply_input"></textarea>
-                                <input type="submit" name="" value="回复" class="reply_sub fr">
-                                <input type="reset" name="" value="取消" class="reply_cancel fr">
-                            </from>
+                            </div>
+                            <hr>
                             {% endfor %}
                         </li>
                     </ul>
@@ -226,19 +223,7 @@
             </script>
             <script type="text/javascript" src="/static/js/jquery-1.8.2.min.js"></script>
             <script type="text/javascript" src="/static/js/js.js"></script>
-            <script type="text/javascript" src="/static/js/jquery.qqFace.js"></script>
             <script type="text/javascript" src="/static/js/detail.js"></script>
-            <!--        <script type="text/javascript">-->
-            <!--            $(function () {-->
-            <!--                //评论QQ表情-->
-            <!--                $('.emotion').qqFace({-->
-            <!--                    assign: 'content',-->
-            <!--                    path: 'https://www.guojian945.com/common/static/images/face/'-->
-
-            <!--                });-->
-            <!--            });-->
-            <!--        </script>-->
-
 
 </body>
 </html>
