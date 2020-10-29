@@ -21,8 +21,11 @@ def index02():
     user_id = session.get("user_id")
     nick_name = session.get("nick_name", "")
     user = db.session.query(User).filter(User.id == user_id).first()
+    news = db.session.query(News)
+    page = int(request.args.get("page", 1))
+    paginate = news.paginate(page, 5, False)
 
-    return render_template("index02.html", user=user, nick_name=nick_name)
+    return render_template("index02.html", user=user, nick_name=nick_name, news=news, paginate=paginate)
 
 
 @index_blu.route("/index03.html")
@@ -30,7 +33,10 @@ def index03():
     user_id = session.get("user_id")
     nick_name = session.get("nick_name", "")
     user = db.session.query(User).filter(User.id == user_id).first()
-    return render_template("index03.html", user=user, nick_name=nick_name)
+    news = db.session.query(News)
+    page = int(request.args.get("page", 1))
+    paginate = news.paginate(page, 15, False)
+    return render_template("index03.html", user=user, nick_name=nick_name, news=news, paginate=paginate)
 
 
 @index_blu.route("/user_list.html")
